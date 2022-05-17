@@ -3,3 +3,5 @@ node_modules
 artifacts
 lib
 yarn-error.log
+.venv
+metrics.txt

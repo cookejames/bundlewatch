@@ -6,6 +6,7 @@ import chalk from 'chalk'
 import determineConfig from './determineConfig'
 import logger from '../logger'
 import bundlewatchApi, { STATUSES } from '../app'
+import { createOpenMetrics } from '../app/reporting/OpenMetrics'
 
 const prettyPrintResults = (fullResults) => {
     logger.log('')
@@ -50,6 +51,8 @@ const main = async () => {
         }
 
         prettyPrintResults(results.fullResults)
+
+        createOpenMetrics(results.fullResults, 'metrics.txt')
 
         if (results.status === STATUSES.FAIL) {
             logger.log(chalk.redBright(`bundlewatch FAIL`))
